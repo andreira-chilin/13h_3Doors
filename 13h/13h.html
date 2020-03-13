@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13h</title>
+	<link rel="stylesheet" href="13hcss.css">
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		<div id="door-1" onclick="dorNum(1)">1</div>
+		<div id="door-2" onclick="dorNum(2)">2</div>
+		<div id="door-3" onclick="dorNum(3)">3</div>
+	</div>
+	<h6 id="voice">Hello. Let's play the game.<br> Over the one of doors I hid your money. Chose one.</h6>
+	<div class="for-buttons">
+		<div id="forButtonYes"></div>
+		<div id="forButtonNo"></div>
+	</div>
+	<script>		
+// step 1 - randomizer
+		var prize = Math.ceil(Math.random() * 3);
+		console.log('prize is over the door number ' + prize);
+
+// step 2  - choosing the door
+		
+		 function dorNum (choice){
+			x = choice;
+		
+// step 3 - empty door
+			emptyDoor =  Math.ceil(Math.random() * 3);
+			while ((emptyDoor == prize) || (emptyDoor == x)) {
+				emptyDoor =  Math.ceil(Math.random() * 3);
+			} //while emptyDoor
+			removedDoor =  document.getElementById('door-'+emptyDoor);
+			removedDoor.parentNode.removeChild(removedDoor);
+			document.getElementById('voice').innerHTML = 'So you have chosen door # ' 
+			+ x + '<br> And I remove one  empty door # ' + emptyDoor + '<br> Will you change your mind?';
+			document.getElementById('wrap').style.pointerEvents = 'none';
+
+//step 4 - adding buttons	
+			yesButton = document.getElementById('forButtonYes').innerHTML = '<input id="yes" onclick="" type="button" value="Yes" name="">';
+			noButton = document.getElementById('forButtonNo').innerHTML = '<input id="no" onclick="" type="button" value="No" name="">';
+
+//step 5 - yes-no	
+			yes.onclick = function() {
+				if (x !== prize) {
+					alert('win');
+					prompt = prompt("one more time?");
+				} else {
+					alert('lose');
+					prompt = prompt("one more time?");
+					}
+			 	};
+			no.onclick = function() {
+				if (x == prize) {
+					alert('win');
+					prompt = prompt("one more time?");
+				} else {
+					alert('lose');
+					prompt = prompt("one more time?");
+					}
+			 	 };
+		} //dorNum
+
+	</script>
+</body>
+</html>
